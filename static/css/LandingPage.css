@@ -1,0 +1,129 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    background-color:#03030bf0;
+}
+
+.container {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.image-overlay img{
+    height: 100%;
+    width: 400px
+}
+
+.overlay-img {
+    width: 600px; /* Adjust as needed */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0px 40px rgba(0, 0, 0, 1);
+    margin-right: 80%;
+    padding-right: 10px;
+}
+
+.text-content {
+    color: white;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.05); /* Increased transparency for more mirror-like effect */
+    backdrop-filter: blur(20px) saturate(180%);
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    border-radius: 16px;
+    /* border: 1px solid rgba(255, 255, 255, 0.25); */
+}
+
+
+
+.heading {
+    font-weight: 400;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 50px;
+}
+
+#content {
+    font-weight: 400;
+    width: 400px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    text-align: justify;
+    margin: 20px 0;
+}
+
+.getStarted {
+    background-color: transparent;
+    color: white;
+    padding: 15px 30px;
+    border: 2px solid white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.getStarted:hover {
+    background-color: white;
+    color: rgb(1, 39, 79);
+}
+
+.getStarted a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.getStarted a:hover {
+    color: inherit;
+}
+
+#info-box {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    transform: translateY(-50%);
+    max-width: 300px; /* Limit the maximum width */
+    text-align: left;
+    color: #333; /* Main text color */
+  }
+  
+  #info-box h3 {
+    color: #000; /* Header text color */
+    margin-top: 0; /* Remove default margin */
+  }
+  
+  #info-box p {
+    color: #555; /* Paragraph text color */
+    margin-bottom: 20px; /* Add some space before the button */
+  }
+  
+  .getStarted {
+    background-color: #ac95ff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .getStarted:hover {
+    background-color: #8a7ce9; /* Darker shade on hover */
+  }

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepFake Detection</title>
+    <link rel="stylesheet" href="../static/css/uploadPage.css">
+    <link rel="icon" href="../static/img/sentinal-logo-new.svg" type="image/svg+xml">
+    <script>
+        window.onload = function() {
+            const scrollBar = document.getElementById('scroll-bar');
+            const scrollThumb = document.getElementById('scroll-bar-thumb');
+            const scrollValue = document.getElementById('scroll-value');
+
+            scrollBar.addEventListener('click', function(event) {
+                const clickX = event.clientX - scrollBar.getBoundingClientRect().left;
+                const scrollPercentage = clickX / scrollBar.offsetWidth;
+
+                let scrollValueText;
+                if (scrollPercentage < 0.15) {
+                    scrollValueText = 10;
+                } else if (scrollPercentage < 0.35) {
+                    scrollValueText = 20;
+                } else if (scrollPercentage < 0.55) {
+                    scrollValueText = 40;
+                } else if (scrollPercentage < 0.75) {
+                    scrollValueText = 60;
+                } else if (scrollPercentage < 0.95) {
+                    scrollValueText = 80;
+                } else {
+                    scrollValueText = 100;
+                }
+
+                scrollThumb.style.width = scrollPercentage * 100 + '%';
+                scrollValue.textContent = scrollValueText;
+
+                const scrollValueInput = document.getElementById('scrollValueInput');
+                scrollValueInput.value = scrollValueText;
+            });
+        };
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const videoUrl = e.target.result;
+                localStorage.setItem('uploadedVideo', videoUrl);
+                window.location.href = '/upload';
+            };
+            reader.readAsDataURL(file);
+        }
+    </script>
+    <style>
+        body {
+            background-color: #1e1e2f; /* Dark slate blue background */
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            padding: 20px; /* Increased padding */
+            color: #ffffff; /* White text */
+            display: flex;
+            align-items: center;
+            background-color: rgba(40, 44, 52, 0.8); /* Semi-transparent dark background */
+        }
+
+        header:hover {
+            color: #00adb5; /* Teal on hover */
+        }
+      
+        header h1 {
+            margin: 0;
+            flex-grow: 1;
+            text-align: center;
+        }
+      
+        header a {
+            color: #007b7f; /* Match with upload form */
+            text-decoration: none;
+            font-size: 35px;
+            font-weight: bold;
+            margin-left: 20px;
+            letter-spacing: 2px;
+        }
+      
+        header a:hover {
+            color: #00ffea; /* Teal on hover */
+        }
+      
+        #upload-form {
+            position: relative;
+            margin: 150px auto; /* Increased margin for more space above and below */
+            width: 300px;
+            padding: 80px;
+            border: 2px solid #00adb5; /* Teal border */
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            background-color: #f8f8f8; /* Light gray background */
+            color: #333; /* Dark gray text */
+        }
+    
+        #upload-form h2 {
+            text-align: center;
+            color: #00adb5; /* Teal for headings */
+            font-size: 30px;
+            margin-bottom: 20px; /* Added margin for spacing */
+        }
+
+        #upload-form input[type="file"] {
+            margin-bottom: 20px; /* Increased bottom margin */
+            background-color: #ffffff; /* White background */
+            border: 1px solid #aaa; /* Light gray border */
+            border-radius: 4px;
+            padding: 10px;
+            width: calc(100% - 22px); /* Full width minus padding */
+        }
+
+        .getStarted {
+            background-color: #007b7f; /* Deeper teal */
+            color: white;
+            padding: 12px 20px; /* More padding for a classier look */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px; /* Increased font size */
+            margin-top: 10px; /* Space above button */
+            border: none;
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        .getStarted:hover {
+            background-color: #005f5f; /* Darker teal on hover */
+        }
+
+        #scroll-bar-container {
+            width: 300px;
+            margin: 70px auto; /* Increased margin for more space above */
+            position: relative;
+            top: 0px; /* Adjusted position */
+        }
+    
+        #scroll-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #1e1e2f;
+            position: relative;
+            cursor: pointer;
+        }
+    
+        #scroll-bar-thumb {
+            width: 0;
+            height: 100%;
+            background-color: #007bff; /* Consider changing this to a teal color */
+            position: absolute;
+        }
+    
+        #scroll-value {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 18px;
+            color: #1e1e2f; /* Dark gray for contrast */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <a href="/upload">SENTINAL</a>
+          </div>
+    </header>
+    <div id="upload-form" class="no-background-image">
+        <h2>Upload Video</h2>
+        <form method="post" enctype="multipart/form-data" action="/upload">
+            <input type="file" name="file" required>
+            <input type="text" name="scrollValue" value="{{ scrollValueText }}" style="display: none;" id="scrollValueInput">
+            <input type="submit" value="Upload" class="getStarted">
+        </form>
+    </div>
+    
+    <div id="scroll-bar-container">
+        <div id="scroll-bar">
+            <div id="scroll-bar-thumb"></div>
+        </div>
+        <div id="scroll-value">0</div>
+    </div>
+</body>
+</html>

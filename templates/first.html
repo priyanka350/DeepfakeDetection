@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Deep Fake Face Detection using Artificial Intelligence</title>
+  <link rel="icon" type="image/jpg" href="../static/img/.jpg">
+  <!--this is for fevicon in title-->
+  <link rel="icon" href="../static/img/sentinal-logo-new.svg" type="image/svg+xml">
+
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../static/img/favicon.png" rel="icon">
+  <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../static/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../static/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../static/css/style.css" rel="stylesheet">
+
+  <style>
+    #content {
+      background: rgb(68 62 137 / 28%);
+      backdrop-filter: blur(9px);
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      height: 100vh;
+      width: 50%;
+      display: flex;
+      align-items: center;
+    }
+    #logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+    }
+    #logo img {
+      height: 100px;
+      width: 100px;
+    }
+    #lekha {
+      display: flex;
+    }
+    #mainlekha {
+      text-align: left;
+    }
+    .new-col {
+      color: #ac95ff;
+      font-weight: 400;
+    }
+    #info-box {
+      background: rgb(186 183 226 / 24%);
+      backdrop-filter: blur(9px);
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      position: fixed;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      max-width: 300px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      color: #333;
+      z-index: 1000;
+    }
+    #info-box h3 {
+      color: #ffefef;
+      margin-top: 0;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    #info-box p {
+      color: #beb6d8c7;
+      font-size: 0.9em;
+    }
+    .getStarted {
+      background-color: #ac95ff;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .getStarted:hover {
+      background-color: #8a7ce9;
+    }
+    @media (max-width: 768px) {
+      #content {
+        width: 100%;
+        height: auto;
+        padding: 40px 20px;
+      }
+      #info-box {
+        position: static;
+        margin: 20px auto;
+        transform: none;
+        width: 90%;
+      }
+    }
+    /* Updated styles for loading overlay */
+    #loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 1s ease-out;
+    }
+    #loading-overlay.fade-out {
+      opacity: 0;
+    }
+    #loading-overlay img {
+      width: 1600px; /* Increase image size to 5x */
+      height: 900px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Loading Overlay -->
+  <div id="loading-overlay">
+    <img src="../static/img/webstart.gif" alt="Loading...">
+  </div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+      <h1 class="col-lg-8 fontNew"><a href="index.html"> <span class="new-col">WOLFENSTEIN</span></a></h1>
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li class="new-col"><a class="nav-link scrollto active" href="{{ url_for('first')}}">HOME</a></li>
+          <li class="new-col"><a class="nav-link scrollto" href="{{ url_for('login')}}">LOGIN</a></li>
+          <li class="new-col"><a class="nav-link scrollto" href="{{ url_for('chart')}}">FLOWCHART</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="row" id="content">
+      <div class="col-lg-8 fontNew" id="lekha">
+        <div id="logo">
+          <img src="../static/img/sentinal-logo-new.svg" alt="Logo">
+        </div>
+        <div class="mainlekha">
+          <h1 class="liquid-title">SENTINAL</h1>
+          <p>A TRUE VISION ON DIGITAL MEDIA</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="info-box">
+      <h3>How Deepfakes are Created</h3>
+      <p id="answer"></p>
+      <button class="getStarted"><a class="nav-link scrollto colk" href="{{ url_for('login')}}">Get Started</a></button>
+    </div> 
+  </section>
+
+  <main id="main">
+    <!-- Your main content here -->
+  </main>
+
+  <!-- Vendor JS Files -->
+  <script src="../static/vendor/aos/aos.js"></script>
+  <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../static/vendor/php-email-form/validate.js"></script>
+  <script src="../static/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../static/js/main.js"></script>
+  <script>
+    const answerText = `
+      Deepfakes are generated using artificial intelligence techniques, particularly deep learning. 
+      By analyzing large datasets of video footage, algorithms can mimic facial expressions and 
+      voice patterns to create realistic yet fake videos.
+    `;
+    
+    const answerElement = document.getElementById("answer");
+    let index = 0;
+
+    function typeAnswer() {
+      if (index < answerText.length) {
+        answerElement.innerHTML += answerText.charAt(index);
+        index++;
+        setTimeout(typeAnswer, 50); // Adjust speed here
+      }
+    }
+
+    // Clear previous content and start typing
+    answerElement.innerHTML = ''; 
+    typeAnswer();
+
+    // Improved loading overlay logic
+    const loadingOverlay = document.getElementById('loading-overlay');
+    const minLoadTime = 3000; // Minimum time to show the loading overlay (in milliseconds)
+    const startTime = Date.now();
+
+    function hideLoadingOverlay() {
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = Math.max(0, minLoadTime - elapsedTime);
+
+      setTimeout(() => {
+        loadingOverlay.classList.add('fade-out');
+        setTimeout(() => {
+          loadingOverlay.style.display = 'none';
+        }, 1000); // Match this to the transition duration in CSS
+      }, remainingTime);
+    }
+
+    // Hide loading overlay when page is fully loaded
+    window.addEventListener('load', hideLoadingOverlay);
+
+    // Fallback to hide overlay if 'load' event doesn't fire
+    setTimeout(hideLoadingOverlay, minLoadTime + 1000);
+  </script>
+</body>
+
+</html>

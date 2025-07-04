@@ -1,0 +1,211 @@
+/* Reset default margins and padding, and set full height for body and html */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Header Section */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(40, 44, 52, 0.8); /* Semi-transparent dark background */
+    color: #ffffff; /* White text for contrast */
+    z-index: 1000; /* Ensure the header is above other elements */
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+}
+
+/* Home button in the header */
+header .home-button {
+    text-decoration: none;
+    color: #00adb5; /* Teal text for the Home button */
+    padding: 10px 20px;
+    border: 2px solid #00adb5; /* Teal border for button-like appearance */
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+header .home-button:hover {
+    background-color: #00adb5; /* Teal background on hover */
+    color: #ffffff; /* White text when hovering over the Home button */
+    cursor: pointer;
+}
+
+/* Main container that fills the viewport */
+.container {
+    background-color: #1e1e2f; /* Dark slate blue */
+    min-height: 100vh; /* 100% of the viewport height */
+    width: 100%;
+    padding-top: 80px; /* To ensure content starts below the fixed header */
+}
+
+/* Heading Style */
+.heading {
+    font-weight: 400;
+    width: 200px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 50px;
+    color: #00adb5; /* Teal for headings */
+    position: relative;
+    left: 42%;
+    top: 50px;
+}
+
+/* Content inside the container */
+.container #content {
+    font-weight: 400;
+    width: 600px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    color: white;
+    text-align: justify;
+    position: relative;
+    left: 42%;
+    top: 50px;
+}
+
+.getStarted {
+    background-color: #00adb5; /* Teal background matching the color scheme */
+    color: white; /* White text for contrast */
+    padding: 15px 30px; /* Sufficient padding for a spacious look */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px; /* Slightly larger font size */
+    margin-top: 20px; /* Increased space above the button */
+    border: none;
+    border-radius: 8px; /* Slightly larger rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.getStarted:hover {
+    background-color: #00e5e0; /* Lighter teal on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+
+.getStarted a {
+    text-decoration: none;
+    color: white;
+}
+
+.getStarted a:hover {
+    color: #00adb5; /* Teal on hover */
+}
+
+/* Glassmorphism for the upload form */
+#upload-form {
+    width: 90%;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+/* Light ray effect animation */
+@keyframes lightRay {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+#upload-form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.0) 50%, rgba(255, 255, 255, 0.2) 75%);
+    background-size: 200% 100%;
+    z-index: -1; /* Position the effect behind the form content */
+    border-radius: inherit; /* Match the border-radius of the form */
+    animation: lightRay 3s linear infinite;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #1e1e2f; /* Dark slate blue */
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer a {
+    color: #f1f1f1;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 18px;
+}
+
+footer a:hover {
+    color: #00adb5; /* Teal on hover */
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    footer {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    footer a {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    footer {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    footer p, footer a {
+        font-size: 14px;
+    }
+
+    footer a {
+        margin: 5px 0;
+    }
+}
+
+#ai-report {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 30px; /* Increased margin for better spacing */
+    padding: 10px; /* Reduced padding for a shorter box */
+    border: 2px dashed #00adb5; /* Teal border for the report */
+    background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent background */
+    border-radius: 8px; /* Rounded corners */
+    max-height: 300px; /* Set a max height */
+    overflow-y: auto; /* Add scroll if content overflows */
+}
+

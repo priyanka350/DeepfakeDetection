@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepFake Detection</title>
+    <link rel="stylesheet" href="../static/css/LandingPage.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!--this is for fevicon in title-->
+  <link rel="icon" href="../static/img/sentinal-logo-new.svg" type="image/svg+xml">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .heading {
+            font-weight: 600;
+            font-size: 41px;
+        }
+        .text-content {
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-overlay"><img src="../static/img/landingPage-bg.svg" alt="Logo"></div>
+        <div class="text-content">
+            <h1 class="heading">DEEPFAKE DETECTION</h1>
+            <p id="content"></p>
+            <button type="submit" class="getStarted">
+                <a href="/index">Get Started</a>
+            </button>
+        </div>
+    </div>
+    <script>
+        const text = "Welcome to our cutting-edge deepfake detection platform. Using advanced AI, we analyze videos to identify signs of manipulation. Our goal is to offer a reliable solution to combat deepfakes and ensure digital media integrity. Upload your media for detailed analysis and receive a comprehensive report on any detected deepfake elements.";
+    
+        const contentElement = document.getElementById("content");
+        let index = 0;
+    
+        function displayText() {
+            if (index < text.length) {
+                contentElement.textContent += text.charAt(index);
+                index++;
+                setTimeout(displayText, 25);
+            }
+        }
+    
+        displayText();
+    </script>
+</body>
+</html>

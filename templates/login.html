@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Upload The Video</title>
+
+  <!-- Favicons -->
+  <link href="../static/img/favicon.png" rel="icon">
+  <link href="../static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins:300,400,500,600,700" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <!--this is for fevicon in title-->
+  <link rel="icon" href="../static/img/sentinal-logo-new.svg" type="image/svg+xml">
+  <!-- Custom CSS -->
+  <style>
+    /* Full-page layout */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      background-color: #1e1e2f; /* Dark slate blue */
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      height: 100vh; /* Full height of viewport */
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-section {
+      background-color: rgba(40, 44, 52, 0.8); /* Semi-transparent dark background */
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 400px;
+      color: #fff; /* White text for contrast */
+      text-align: center; /* Center text */
+    }
+
+    .login-card img {
+      width: 150px; /* Increase size of the GIF */
+      height: 150px; /* Set height to match width */
+      border-radius: 50%; /* Make the GIF circular */
+      position: relative; /* Position relative for absolute positioning */
+      top: -75px; /* Move it upwards by half its height */
+      margin-bottom: -75px; /* Adjust bottom margin to prevent space below */
+    }
+
+    .login-card h3 {
+      font-size: 38px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+
+    .lk {
+      color: #00adb5; /* Teal color for labels */
+      font-size: 28px; /* Increased font size */
+      font-weight: bold; /* Bold text */
+    }
+
+    .form-control {
+      border: 2px solid #ddd;
+      border-radius: 30px;
+      padding: 15px;
+      transition: border-color 0.3s;
+      background-color: #fff; /* White background for inputs */
+    }
+
+    .form-control:focus {
+      border-color: #00adb5; /* Teal focus border */
+      box-shadow: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #00adb5 0%, #2575fc 100%);
+      border: none;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 30px;
+      transition: background 0.3s ease;
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #2575fc 0%, #00adb5 100%);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative; /* Needed for positioning the eye icon */
+    }
+
+    .feedback {
+      color: red;
+      margin-top: 10px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Center checkbox and label */
+      margin-top: 30px; /* Increased margin to add space */
+      color: #fff; /* White text for contrast */
+    }
+
+    .remember-me input {
+      transform: scale(1.5); /* Increase the size of the checkbox */
+      margin-right: 10px; /* Space between checkbox and label */
+    }
+
+    .remember-me label {
+      font-size: 20px; /* Adjust label size if needed */
+    }
+
+    .eye-icon {
+      position: absolute;
+      right: 22.5px;
+      top: 15px;
+      cursor: pointer;
+      color: #00adb5; /* Teal color for the eye icon */
+      font-size: 25px; /* Adjust the size as needed */
+      width: 24px; /* Set a fixed width for better alignment */
+      height: 24px; /* Set a fixed height for better alignment */
+      line-height: 24px; /* Center the icon vertically */
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Login Section -->
+    <div class="login-section">
+      <div class="login-card">
+        <img src="../static/img/clip.gif" alt="Clip" class="circular-gif"> 
+        <h3>Login to your account</h3>
+        <form id="login-form" onsubmit="return login()">
+          <div class="form-group">
+            <label for="uname" class="lk"><b>Username</b></label>
+            <input type="text" id="uname" class="form-control" placeholder="Enter username" required>
+            <div class="invalid-feedback">Please enter your username.</div>
+          </div>
+          <div class="form-group">
+            <label for="pwd" class="lk"><b>Password</b></label>
+            <div style="position: relative;">
+              <input type="password" id="pwd" class="form-control" placeholder="Enter password" required>
+              <i class="bi bi-eye eye-icon" id="togglePassword" onclick="togglePassword()"></i> <!-- Eye Icon -->
+            </div>
+            <div class="invalid-feedback">Please enter your password.</div>
+          </div>
+          <div class="remember-me">
+            <input type="checkbox" id="rememberMe">
+            <label for="rememberMe">Remember Me</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+          <div id="login-feedback" class="feedback"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function login() {
+      var uname = document.getElementById("uname").value;
+      var pwd = document.getElementById("pwd").value;
+
+      if (uname === "kdrudra20047@gmail.com" && pwd === "Rudra@Main7104") {
+        alert("Login Success!");
+        window.location.href = "{{url_for('index1')}}";
+      } else {
+        document.getElementById("login-feedback").innerText = "Invalid Credentials!";
+      }
+      return false;
+    }
+
+    function togglePassword() {
+      var pwdField = document.getElementById("pwd");
+      var pwdType = pwdField.type === "password" ? "text" : "password";
+      pwdField.type = pwdType;
+      document.getElementById("togglePassword").classList.toggle("bi-eye");
+      document.getElementById("togglePassword").classList.toggle("bi-eye-slash");
+    }
+  </script>
+
+  <!-- Vendor JS Files -->
+  <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

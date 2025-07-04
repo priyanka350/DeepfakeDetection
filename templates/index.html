@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Video Upload</title>
+  <script>
+    window.onload = function() {
+      const scrollValueInput = document.getElementById('scrollValueInput');
+      scrollValueInput.value = ''; // Remove any scrollValueText references.
+    };
+
+    function handleFileSelect(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      console.log(" I am here ");
+      reader.onload = function (e) {
+        const videoUrl = e.target.result;
+        localStorage.setItem('uploadedVideo', videoUrl);
+        window.location.href = '/upload';
+      };
+
+      reader.readAsDataURL(file);
+    }
+  </script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('Screenshot.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #12a1df;
+      padding: 20px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header a {
+      color: #141313;
+      text-decoration: none;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    header a:hover {
+      color: #f1f0ea;
+    }
+
+    /* Glassmorphism for upload section */
+    #upload-form {
+      width: 90%;
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(15px) saturate(180%);
+      -webkit-backdrop-filter: blur(15px) saturate(180%);
+      background-color: rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    #upload-form h2 {
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    #upload-form input[type="file"],
+    #upload-form input[type="submit"] {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    #upload-form input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #upload-form input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    #upload-form:hover {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    footer {
+      background-color: #333;
+      padding: 10px;
+      color: #fff;
+      text-align: center;
+      margin-top: auto;
+      width: 100%;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header a {
+        font-size: 24px;
+      }
+
+      #upload-form {
+        width: 95%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/index">Home</a>
+  </header>
+
+  <div id="upload-form">
+    <h2>Upload Video</h2>
+    <form method="post" enctype="multipart/form-data" action="/upload">
+      <input type="file" name="file">
+      <input type="text" name="scrollValue" value="" style="display: none;" id="scrollValueInput">
+      <input type="submit" value="Upload">
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Deep Fake Website. All rights reserved.</p>
+  </footer>
+</body>
+<script src="uploader.js"></script>
+</html>

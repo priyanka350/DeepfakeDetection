@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Uploaded Video</title>
+  <!--this is for fevicon in title-->
+  <link rel="icon" href="../static/img/sentinal-logo-new.svg" type="image/svg+xml">
+  <script>
+    window.onload = function () {
+      const videoUrl = localStorage.getItem('uploadedVideo');
+
+      if (videoUrl) {
+        const videoElement = document.createElement('video');
+        videoElement.src = videoUrl;
+        videoElement.controls = true;
+
+        const videoContainer = document.getElementById('video-container');
+        videoContainer.appendChild(videoElement);
+      } else {
+        console.error('No uploaded video found.');
+      }
+
+      // AI-generated report loading effect
+      const reportElement = document.getElementById('ai-report');
+      const loadingText = "Analyzing video, please wait";
+      let dots = 0;
+
+      const loadingInterval = setInterval(() => {
+        reportElement.innerText = loadingText + ".".repeat(dots);
+        dots = (dots + 1) % 4;
+      }, 500);
+
+      setTimeout(() => {
+        clearInterval(loadingInterval);
+        // Display the appropriate report based on the prediction
+        const prediction = "{{ prediction }}"; // Use Flask to inject the prediction value
+        if (prediction === "REAL") {
+          reportElement.innerHTML = `
+            <h3 style="color: green;">The uploaded video is determined to be authentic.</h3>
+            <p>The model has thoroughly analyzed the video...</p>`;
+        } else {
+          reportElement.innerHTML = `
+            <h3 style="color: red;">The uploaded video has been identified as a deepfake.</h3>
+            <p>Based on the model's analysis, multiple inconsistencies were detected...</p>`;
+        }
+      }, 5000); // Delay of 5 seconds to mimic AI processing
+    };
+  </script>
+  <style>
+    body {
+      overflow-y: scroll !important;
+      background-color: #1e1e2f; /* Dark slate blue */
+      color: #ffffff; /* White text */
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #282c34; /* Dark gray */
+      padding: 20px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    header a {
+      color: #00adb5; /* Teal */
+      text-decoration: none;
+      font-size: 30px;
+      font-weight: bold;
+      margin-left: 20px;
+    }
+
+    header a:hover {
+      color: #00e5e0; /* Lighter teal on hover */
+    }
+
+    h1 {
+      color: #00adb5; /* Teal for headings */
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    #video-container {
+      margin: 20px auto;
+      max-width: 80%;
+      border: 2px solid #00adb5; /* Teal border */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    #video-container video {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    .image-container, .face-container {
+      width: 80%;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 10px 0;
+    }
+
+    .image-container img, .face-container img {
+      display: inline-block;
+      height: auto;
+      margin-right: 10px;
+      margin-top: 30px;
+      border-radius: 8px;
+      transition: transform 0.2s;
+    }
+
+    .image-container img:hover, .face-container img:hover {
+      transform: scale(1.05);
+    }
+
+    .image-container img {
+      width: 300px;
+    }
+
+    .face-container img {
+      width: 150px;
+    }
+
+    /* CSS for AI-Generated Report */
+    #ai-report {
+      text-align: left;
+      font-size: 18px;
+      margin-top: 30px;
+      padding: 15px;
+      border: 2px solid #00adb5;
+      background-color: rgba(255, 255, 255, 0.1);
+      max-height: 300px;
+      overflow-y: auto;
+      width: 80%;
+      border-radius: 10px;
+    }
+
+    footer {
+      background-color: #333;
+      padding: 10px;
+      color: #fff;
+      text-align: center;
+      position: relative;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/index">Home</a>
+  </header>
+
+  <h1>Extracted Frames</h1>
+  <div class="image-container" style="margin-left: 10%">
+    {% for frame in frame_path %}
+    <img src="{{ frame }}">
+    {% endfor %}
+  </div>
+
+  <h1>Extracted Faces</h1>
+  <div class="face-container" style="margin-left: 10%">
+    {% for frame in face_path %}
+    <img src="{{ frame }}">
+    {% endfor %}
+  </div>
+
+  <h1>Results</h1>
+  <div style="text-align: center;">
+    <p style="font-size: 25px;">PREDICTION = {{ prediction }}</p>
+    <p style="font-size: 25px;">Confidence Percentage = {{ accuracy }} %</p>
+  </div>
+
+  <h1>AI-Generated Report</h1>
+  <div id="ai-report"></div> <!-- Report will be loaded here -->
+
+  <footer>
+    <p>&copy; 2024 Deep Fake Website. All rights reserved.</p>
+  </footer>
+</body>
+</html>
