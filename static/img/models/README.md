@@ -38,4 +38,5 @@ This folder contains trained PyTorch models for **Deepfake Face Detection** base
   ```
 - Make sure the selected model matches the input video processing (frame count, format).
 
+---
 
