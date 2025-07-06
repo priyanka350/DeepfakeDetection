@@ -64,7 +64,7 @@ A Flask-powered web application that uses PyTorch, OpenCV, and a custom ResNeXt�
 3. **Download Trained Models**
    
    - Each model (`*.pt`, \~2.1 GB) is hosted on Google Drive.
-   👉 [Download all models here](https://drive.google.com/drive/folders/1cPd5iYyPtB_B2J3sJgnZ0GmcLjdbpr5W?usp=sharing)<br>
+    [Download all models here](https://drive.google.com/drive/folders/1cPd5iYyPtB_B2J3sJgnZ0GmcLjdbpr5W?usp=sharing)<br>
    - Place the `.pt` files into `DeepfakeDetection/static/img/models/` and `DeepfakeDetection/models`.
 
 4. **Run the Web App**
