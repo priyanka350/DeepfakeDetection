@@ -1,18 +1,15 @@
-## 🧠 Model Files (`.pt`)
+## Model Files (`.pt`)
 
 This folder contains trained PyTorch models for **Deepfake Face Detection** based on varying:
 
-* Accuracy levels (`acc_84` to `acc_97`)
+* Accuracy levels (`acc_84` to `acc_97`, i.e, 84% to 97%) 
 * Input video frame counts (`10` to `100` frames)
 * Datasets (FF++ and CelebDF)
-
-### 📁 Folder Location
-
-`DeepfakeDetection/models/` *(excluded from GitHub due to size constraints)*
+* Folder Location : `DeepfakeDetection/models/` *(excluded from GitHub due to size constraints)*
 
 ---
 
-### 📦 Available Models (9 total)
+### Available Models (9 total)
 
 | File Name                                  | Accuracy | Frames | Dataset      |
 | ------------------------------------------ | -------- | ------ | ------------ |
@@ -28,28 +25,17 @@ This folder contains trained PyTorch models for **Deepfake Face Detection** base
 
 ---
 
-### 🔗 Download the Models
+### How to Download and Use 
 
-Due to GitHub's 100MB upload limit, you can download all models from this link:
-
-👉 [📥 Google Drive Download Folder](https://drive.google.com/file/d/1MqzrRkG0NKKfkVDp2eodCVZoXJhNDnxD/view?usp=drive_link)
-
-After downloading, **place all `.pt` files inside**:
-
-```
-DeepfakeDetection/models/
-```
+- You can download all models from this [link](https://drive.google.com/drive/folders/1cPd5iYyPtB_B2J3sJgnZ0GmcLjdbpr5W?usp=sharing).
+- After downloading, **place all `.pt` files inside**:
+  ```
+  DeepfakeDetection/models/
+  ```
+- In your Python code (inside `app.py`), load any model like this:
+  ```python
+  path_to_model = './models/model_97_acc_60_frames_FF_data.pt'
+  ```
+- Make sure the selected model matches the input video processing (frame count, format).
 
 ---
-
-### 🚀 How to Use
-
-In your Python code (e.g., inside `predict.py` or `app.py`), load any model like this:
-
-```python
-path_to_model = './models/model_97_acc_60_frames_FF_data.pt'
-```
-
-Make sure the downloaded model file (e.g. `model_90_acc_60_frames_final_data.pt`) is placed in the folder and the selected model matches the input video processing (frame count, format).
-
-
